@@ -13,6 +13,8 @@
 		E801E982213C776B0092B7A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E801E981213C776B0092B7A1 /* Assets.xcassets */; };
 		E801E985213C776B0092B7A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E801E983213C776B0092B7A1 /* LaunchScreen.storyboard */; };
 		E801E990213C776B0092B7A1 /* TaskReminderCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801E98F213C776B0092B7A1 /* TaskReminderCalendarTests.swift */; };
+		E801E99C213C77B30092B7A1 /* TPDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801E99B213C77B30092B7A1 /* TPDate.swift */; };
+		E801E99E213C78100092B7A1 /* TPDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801E99D213C78100092B7A1 /* TPDateTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		E801E98B213C776B0092B7A1 /* TaskReminderCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskReminderCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E801E98F213C776B0092B7A1 /* TaskReminderCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskReminderCalendarTests.swift; sourceTree = "<group>"; };
 		E801E991213C776B0092B7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E801E99B213C77B30092B7A1 /* TPDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPDate.swift; sourceTree = "<group>"; };
+		E801E99D213C78100092B7A1 /* TPDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPDateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		E801E979213C776A0092B7A1 /* TaskReminderCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				E801E99A213C778B0092B7A1 /* Models */,
 				E801E97A213C776A0092B7A1 /* AppDelegate.swift */,
 				E801E97C213C776A0092B7A1 /* ViewController.swift */,
 				E801E97E213C776A0092B7A1 /* Main.storyboard */,
@@ -91,9 +96,18 @@
 			isa = PBXGroup;
 			children = (
 				E801E98F213C776B0092B7A1 /* TaskReminderCalendarTests.swift */,
+				E801E99D213C78100092B7A1 /* TPDateTests.swift */,
 				E801E991213C776B0092B7A1 /* Info.plist */,
 			);
 			path = TaskReminderCalendarTests;
+			sourceTree = "<group>";
+		};
+		E801E99A213C778B0092B7A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E801E99B213C77B30092B7A1 /* TPDate.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E801E97D213C776A0092B7A1 /* ViewController.swift in Sources */,
+				E801E99C213C77B30092B7A1 /* TPDate.swift in Sources */,
 				E801E97B213C776A0092B7A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E801E990213C776B0092B7A1 /* TaskReminderCalendarTests.swift in Sources */,
+				E801E99E213C78100092B7A1 /* TPDateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
