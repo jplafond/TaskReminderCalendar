@@ -15,6 +15,9 @@
 		E801E990213C776B0092B7A1 /* TaskReminderCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801E98F213C776B0092B7A1 /* TaskReminderCalendarTests.swift */; };
 		E801E9A0213C86250092B7A1 /* TPDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801E99F213C86250092B7A1 /* TPDate.swift */; };
 		E801E9A2213C91600092B7A1 /* TPDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801E9A1213C91600092B7A1 /* TPDateTests.swift */; };
+		E8666ADA213CD5E300E0B8D6 /* TPItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8666AD9213CD5E300E0B8D6 /* TPItem.swift */; };
+		E8666ADC213CD6EA00E0B8D6 /* TPTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8666ADB213CD6EA00E0B8D6 /* TPTag.swift */; };
+		E8666ADE213CD99100E0B8D6 /* TRCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8666ADD213CD99100E0B8D6 /* TRCItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,9 @@
 		E801E991213C776B0092B7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E801E99F213C86250092B7A1 /* TPDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPDate.swift; sourceTree = "<group>"; };
 		E801E9A1213C91600092B7A1 /* TPDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPDateTests.swift; sourceTree = "<group>"; };
+		E8666AD9213CD5E300E0B8D6 /* TPItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPItem.swift; sourceTree = "<group>"; };
+		E8666ADB213CD6EA00E0B8D6 /* TPTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPTag.swift; sourceTree = "<group>"; };
+		E8666ADD213CD99100E0B8D6 /* TRCItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRCItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				E801E99F213C86250092B7A1 /* TPDate.swift */,
+				E8666AD9213CD5E300E0B8D6 /* TPItem.swift */,
+				E8666ADB213CD6EA00E0B8D6 /* TPTag.swift */,
+				E8666ADD213CD99100E0B8D6 /* TRCItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -212,7 +221,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E801E97D213C776A0092B7A1 /* ViewController.swift in Sources */,
+				E8666ADC213CD6EA00E0B8D6 /* TPTag.swift in Sources */,
+				E8666ADE213CD99100E0B8D6 /* TRCItem.swift in Sources */,
 				E801E9A0213C86250092B7A1 /* TPDate.swift in Sources */,
+				E8666ADA213CD5E300E0B8D6 /* TPItem.swift in Sources */,
 				E801E97B213C776A0092B7A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
