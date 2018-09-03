@@ -116,7 +116,18 @@ enum TPDate {
                                  11: "November",
                                  12: "December"]
 
-    struct regExKeys {
+    struct regExKey {
+        static let didMatch = 0
+        static let yearOffset = 2
+        static let monthOffset = 3
+        static let dayOffset = 4
+        static let hourOffset = 6
+        static let minuteOffset = 7
+        static let endHourOffset = 9
+        static let endMinuteOffset = 10
+    }
+
+    struct regExKeys2 {
         static let didMatch = 0
         static let dateMatch = 1
         static let reminderMatch = 5
@@ -266,11 +277,8 @@ extension TPDate: CustomStringConvertible {
 // MARK: - String Initializer
 extension TPDate {
     init?(dateString: String) {
-        let regexParser =
-            "(^(\\d{2}|\\d{4})-(\\d{1,2})-(\\d{1,2})$)|" + // YY(YY)-MM-DD
-                "(^(\\d{2}|\\d{4})-(\\d{1,2})-(\\d{1,2})\\s+?(\\d{1,2}):(\\d{1,2})$)|" + // YY(YY)-MM-DD HH:MM
-        "(^(\\d{2}|\\d{4})-(\\d{1,2})-(\\d{1,2})\\s+?(\\d{1,2}):(\\d{1,2})-(\\d{1,2}):(\\d{1,2})$)" // YY(YY)-MM-DD HH:MM-HH:MM
-
+        // YY(YY)-MM-DD(( HH:MM)-HH:MM)
+        let regexParser = "(^(\\d{2}|\\d{4})-(\\d{1,2})-(\\d{1,2})(\\s?(\\d{1,2}):(\\d{1,2}))?(-?(\\d{1,2}):?(\\d{1,2}))?$)"
 
         do {
             let regex = try NSRegularExpression(pattern: regexParser,
@@ -284,24 +292,7 @@ extension TPDate {
                 return nil
             }
 
-            let base: Int
-            // Figure out which match
-            let dateRange = match.range(at: TPDate.regExKeys.dateMatch),
-            reminderRange = match.range(at: TPDate.regExKeys.reminderMatch),
-            appointmentRange = match.range(at: TPDate.regExKeys.appointmentMatch)
-
-            if dateRange.location != NSNotFound {
-                base = TPDate.regExKeys.dateMatch
-            } else if reminderRange.location != NSNotFound {
-                base = TPDate.regExKeys.reminderMatch
-            } else if appointmentRange.location != NSNotFound {
-                base = TPDate.regExKeys.appointmentMatch
-            } else {
-                base = 0
-            }
-            // Extract elements
-            var arguments: [Int: Int?] = [:]
-
+            // Helper function
             func extract(from fromRange: NSRange) -> Int? {
                 guard fromRange.location != NSNotFound else {
                     return nil
@@ -312,40 +303,33 @@ extension TPDate {
             }
 
             // Get ranges
-            let year = match.range(at: base + TPDate.regExKeys.yearOffset)
-            let month = match.range(at: base + TPDate.regExKeys.monthOffset)
-            let day = match.range(at: base + TPDate.regExKeys.dayOffset)
+            guard TPDate.regExKey.endMinuteOffset <= match.numberOfRanges else {
+                print("Parser issue")
+                return nil
+            }
+            let yearRange = match.range(at: TPDate.regExKey.yearOffset)
+            let monthRange = match.range(at: TPDate.regExKey.monthOffset)
+            let dayRange = match.range(at: TPDate.regExKey.dayOffset)
 
-            let hour = match.range(at: base + TPDate.regExKeys.hourOffset)
-            let minute = match.range(at: base + TPDate.regExKeys.minuteOffset)
-            let endHour = match.range(at: base + TPDate.regExKeys.endHourOffset)
-            let endMinute = match.range(at: base + TPDate.regExKeys.endMinuteOffset)
+            let hourRange = match.range(at: TPDate.regExKey.hourOffset)
+            let minuteRange = match.range(at: TPDate.regExKey.minuteOffset)
 
-            // Save into arguments
-            arguments[TPDate.regExKeys.yearOffset] = extract(from: year)
-            arguments[TPDate.regExKeys.monthOffset] = extract(from: month)
-            arguments[TPDate.regExKeys.dayOffset] = extract(from: day)
-            arguments[TPDate.regExKeys.hourOffset] = extract(from: hour)
-            arguments[TPDate.regExKeys.minuteOffset] = extract(from: minute)
-            arguments[TPDate.regExKeys.endHourOffset] = extract(from:endHour)
-            arguments[TPDate.regExKeys.endMinuteOffset] = extract(from: endMinute)
+            let endHourRange = match.range(at: TPDate.regExKey.endHourOffset)
+            let endMinuteRange = match.range(at: TPDate.regExKey.endMinuteOffset)
 
-            // Verify input
-            guard let yearArg =  arguments[TPDate.regExKeys.yearOffset].flatMap({$0}),
-                let monthArg = arguments[TPDate.regExKeys.monthOffset].flatMap({$0}),
-                let dayArg = arguments[TPDate.regExKeys.dayOffset]?.flatMap({$0}) else {
-                    print("Missing YMD from <\(dateString)>")
+            // Get arguments
+            guard let year = extract(from: yearRange),
+                let month = extract(from: monthRange),
+                let day = extract(from: dayRange) else {
+                    print("Missing YMD in <\(dateString)>")
                     return nil
             }
-            // Initialize with the new numbers
-            self.init(year: yearArg, month: monthArg,
-                      day: dayArg,
-                      hour: arguments[TPDate.regExKeys.hourOffset].flatMap({$0}),
-                      minute: arguments[TPDate.regExKeys.minuteOffset].flatMap({$0}),
-                      endHour: arguments[TPDate.regExKeys.endHourOffset].flatMap({$0}),
-                      endMinute: arguments[TPDate.regExKeys.endMinuteOffset]?.flatMap({$0}))
+            self.init(year: year, month: month, day: day,
+                      hour: extract(from: hourRange),
+                      minute: extract(from: minuteRange),
+                      endHour: extract(from: endHourRange),
+                      endMinute: extract(from: endMinuteRange))
         }
-
         catch let error {
             print(error)
             return nil
