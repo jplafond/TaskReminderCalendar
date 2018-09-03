@@ -37,50 +37,50 @@ class TPDateTests: XCTestCase {
     }
 
     func testInvalidDates() {
-        for month in TPDateAsClass.months {
-            let maxDay = TPDateAsClass.days[month]
-            XCTAssert(nil == TPDateAsClass(year: 2018, month: month, day: 0))
-            XCTAssert(nil == TPDateAsClass(year: 2018, month: month, day: maxDay! + 1))
+        for month in TPDate.months {
+            let maxDay = TPDate.days[month]
+            XCTAssert(nil == TPDate(year: 2018, month: month, day: 0))
+            XCTAssert(nil == TPDate(year: 2018, month: month, day: maxDay! + 1))
         }
     }
 
     func testNormalizeYear() {
-        let tpDate = TPDateAsClass(year: 18, month: 1, day: 1)
+        let tpDate = TPDate(year: 18, month: 1, day: 1)
         XCTAssertNotNil(tpDate)
         XCTAssert(tpDate!.year == 2018)
     }
 
     func testIsLeapYear() {
-        XCTAssertTrue(TPDateAsClass.isLeapYear(year: 0000))
-        XCTAssertTrue(TPDateAsClass.isLeapYear(year: 0004))
-        XCTAssertFalse(TPDateAsClass.isLeapYear(year: 0100))
-        XCTAssertTrue(TPDateAsClass.isLeapYear(year: 0400))
-        XCTAssertFalse(TPDateAsClass.isLeapYear(year: 0007))
-        XCTAssertFalse(TPDateAsClass.isLeapYear(year: 1900))
-        XCTAssertTrue(TPDateAsClass.isLeapYear(year: 2000))
-        XCTAssertTrue(TPDateAsClass.isLeapYear(year: 2020))
+        XCTAssertTrue(TPDate.isLeapYear(year: 0000))
+        XCTAssertTrue(TPDate.isLeapYear(year: 0004))
+        XCTAssertFalse(TPDate.isLeapYear(year: 0100))
+        XCTAssertTrue(TPDate.isLeapYear(year: 0400))
+        XCTAssertFalse(TPDate.isLeapYear(year: 0007))
+        XCTAssertFalse(TPDate.isLeapYear(year: 1900))
+        XCTAssertTrue(TPDate.isLeapYear(year: 2000))
+        XCTAssertTrue(TPDate.isLeapYear(year: 2020))
     }
 
     func testValidHours() {
         for hour in 0...23 {
-            XCTAssertTrue(TPDateAsClass.isValid(hour: hour))
+            XCTAssertTrue(TPDate.isValid(hour: hour))
         }
     }
 
     func testInvalidHours() {
-        XCTAssertFalse(TPDateAsClass.isValid(hour: -1))
-        XCTAssertFalse(TPDateAsClass.isValid(hour: 24))
+        XCTAssertFalse(TPDate.isValid(hour: -1))
+        XCTAssertFalse(TPDate.isValid(hour: 24))
     }
 
     func testValidMinutes() {
         for minute in 0...59 {
-            XCTAssertTrue(TPDateAsClass.isValid(minute: minute))
+            XCTAssertTrue(TPDate.isValid(minute: minute))
         }
     }
 
     func testInvalidMinutes() {
-        XCTAssertFalse(TPDateAsClass.isValid(minute: -1))
-        XCTAssertFalse(TPDateAsClass.isValid(minute: 60))
+        XCTAssertFalse(TPDate.isValid(minute: -1))
+        XCTAssertFalse(TPDate.isValid(minute: 60))
     }
 
     // MARK: - TPReminder Validation
