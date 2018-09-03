@@ -231,9 +231,13 @@ class TPDateTests: XCTestCase {
         let testDates = ["",
                          "something",
                          "0-0-0",
-                         "10-0-0 0:0",
-                         "10-0-0 0:0-0:0",
-                         "10-0-0 0:0-0:0-0:0"]
+                         "10-0-0",
+                         "10-1-0",
+                         "10-1-1 0:60",
+                         "10-1-1 24:0",
+                         "10-1-1 0:0-24:0",
+                         "10-1-1 0:0-0:60",
+                         "10-1-1 0:0-0:0-0:0"]
         for date in testDates {
             XCTAssertNil(TPDate(dateString: date), date)
         }
