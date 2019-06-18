@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Calendar access needed to add TaskPaper items into the calendar.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Reminder access needed to add TaskPaper items into the reminders.</string>
 </dict>
 </plist>

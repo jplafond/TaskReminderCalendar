@@ -336,3 +336,48 @@ extension TPDate {
         }
     }
 }
+
+// MARK: - Date Converters
+extension TPDate {
+    var startDateComponents: DateComponents {
+        var dateComponents = DateComponents()
+        
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        
+        if let hour = hour,
+            let minute = minute {
+            dateComponents.hour = hour
+            dateComponents.minute = minute
+        }
+        
+        return dateComponents
+    }
+    
+    var startDate: Date? {
+        let current = Calendar.current
+        return current.date(from: startDateComponents)
+    }
+    
+    var endDateComponents: DateComponents {
+        var dateComponents = DateComponents()
+        
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        
+        if let hour = endHour,
+            let minute = endMinute {
+            dateComponents.hour = hour
+            dateComponents.minute = minute
+        }
+        
+        return dateComponents
+    }
+    
+    var endDate: Date? {
+        let current = Calendar.current
+        return current.date(from: endDateComponents)
+    }
+}
